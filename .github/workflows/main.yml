@@ -5,7 +5,7 @@ on:
 permissions:
   contents: write
 jobs:
-  report:
+  update-site:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
