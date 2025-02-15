@@ -1,0 +1,30 @@
+name: Update Site
+on:
+  schedule:
+    - cron: "0 0 * * FRI,SAT,SUN,MON"
+permissions:
+  contents: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - name: Install packages
+        run: npm ci
+      - name: Update Site
+        run: node index.mjs
+      - name: Commit updates
+        run: |
+          git config --global user.name ${{ secrets.USER_NAME }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git commit -am "Update Site"
+          git push
+      - name: install surge
+        run: npm install -g surge
+      - name: Deploy to surge
+        run: surge ./site ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}

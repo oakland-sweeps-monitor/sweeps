@@ -1,0 +1,13 @@
+{
+  "name": "sweeps",
+  "version": "1.0.0",
+  "description": "* Scheduled Github action to check sweep page for new pdf file\r * if new pdf file found - kick off job to download and parse file\r * in github action create github pull request to add data to repo\r * on branch update github action to generate html from data and push to github pages",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "jsdom": "^26.0.0"
+  }
+}
