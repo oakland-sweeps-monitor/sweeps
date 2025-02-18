@@ -2,6 +2,7 @@ name: Update Site
 on:
   schedule:
     - cron: "0 0 * * FRI,SAT,SUN,MON"
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
